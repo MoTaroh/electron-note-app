@@ -22,24 +22,26 @@
   },
   "devDependencies": {
     "@types/electron-devtools-installer": "2.2.1",
-    "@typescript-eslint/eslint-plugin": "5.8.1",
-    "@vitejs/plugin-vue": "2.0.1",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
     "cross-env": "7.0.3",
     "dts-for-context-bridge": "0.7.1",
     "electron": "16.0.5",
     "electron-builder": "22.14.5",
     "electron-devtools-installer": "3.2.0",
-    "eslint": "8.5.0",
-    "eslint-plugin-vue": "8.2.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
     "nano-staged": "0.5.0",
     "playwright": "1.17.1",
     "simple-git-hooks": "2.7.0",
     "typescript": "4.5.4",
-    "vite": "2.7.8",
-    "vue-tsc": "0.30.1"
+    "vite": "2.7.8"
   },
   "dependencies": {
     "electron-updater": "4.6.5",
-    "vue": "3.2.26"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
