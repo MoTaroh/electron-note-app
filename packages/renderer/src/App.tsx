@@ -5,7 +5,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <p>Hello, Vite + React</p>
+      <p className="font-bold">Hello, Vite + React</p>
       <p>
         <button onClick={() => setCount(count => count + 1)}>
           Count is : {count}
