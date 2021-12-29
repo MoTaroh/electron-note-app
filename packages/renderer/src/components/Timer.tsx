@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
+type Props = {
+  isOpen: boolean
+}
+
 const convertSecondsToMMSS = (seconds: number) => {
   const min: number = Math.floor(seconds / 60)
   const mm: string = min < 10 ? `0${min}` : `${min}`
@@ -10,7 +14,7 @@ const convertSecondsToMMSS = (seconds: number) => {
   return `${mm}:${ss}`
 }
 
-const Timer = () => {
+const Timer = (props: Props) => {
   let initialCount = 10 * 60
   const initialText: string = convertSecondsToMMSS(initialCount)
   const [seconds, setSeconds] = useState(initialCount)
@@ -57,20 +61,22 @@ const Timer = () => {
   return (
     <div className="timer flex flex-1 rounded p-4 justify-between items-center text-white bg-black bg-opacity-60">
       <span className="font-bold text-5xl">{countText}</span>
-      <div className="flex space-x-3">
-        <button
-          onClick={toggleCountdown}
-          className="h-8 w-8 bg-white text-blue-400 rounded-full"
-        >
-          ▶
-        </button>
-        <button
-          onClick={resetCountdown}
-          className="h-8 w-8 bg-white text-red-400 rounded-full"
-        >
-          ■
-        </button>
-      </div>
+      {props.isOpen && (
+        <div className="flex space-x-3">
+          <button
+            onClick={toggleCountdown}
+            className="h-8 w-8 bg-white text-blue-400 rounded-full"
+          >
+            ▶
+          </button>
+          <button
+            onClick={resetCountdown}
+            className="h-8 w-8 bg-white text-red-400 rounded-full"
+          >
+            ■
+          </button>
+        </div>
+      )}
     </div>
   )
 }
