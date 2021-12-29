@@ -16,9 +16,7 @@ const convertSecondsToMMSS = (seconds: number) => {
 
 const Timer = (props: Props) => {
   let initialCount = 10 * 60
-  const initialText: string = convertSecondsToMMSS(initialCount)
   const [seconds, setSeconds] = useState(initialCount)
-  const [countText, setCountText] = useState(initialText)
   const [isActive, setIsActive] = useState(false)
 
   const toggleCountdown = () => {
@@ -53,14 +51,11 @@ const Timer = (props: Props) => {
     return () => clearInterval(intervalId)
   }, [isActive, seconds])
 
-  useEffect(() => {
-    // convert seconds to mm:ss
-    setCountText(convertSecondsToMMSS(seconds))
-    return () => {}
-  }, [seconds])
   return (
     <div className="timer flex flex-1 rounded p-4 justify-between items-center text-white bg-black bg-opacity-60">
-      <span className="font-bold text-5xl">{countText}</span>
+      <span className="font-bold text-5xl">
+        {convertSecondsToMMSS(seconds)}
+      </span>
       {props.isOpen && (
         <div className="flex space-x-3">
           <button
