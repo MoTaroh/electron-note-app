@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <div
       className={`
-      bg-black border border-white border-opacity-50 bg-opacity-20 flex flex-col space-y-8
+      bg-black bg-opacity-20 flex flex-col h-screen space-y-8
       ${isOpen ? 'p-3 min-w-[320px]' : 'p-1'}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -39,9 +39,9 @@ const App: React.FC = () => {
         <Timer isOpen={isOpen}></Timer>
       </div>
       {isOpen && (
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-1 flex-col space-y-4 w-[362px]">
           <h3 className=" font-semibold text-lg text-white">NOTES</h3>
-          <div className="py-4 px-8 bg-black bg-opacity-60">
+          <div className="flex-1 py-4 px-8 rounded bg-black bg-opacity-60">
             <Editor defaultValue="Hello, world!" theme={theme} />
           </div>
         </div>

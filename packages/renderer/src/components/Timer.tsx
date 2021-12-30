@@ -52,7 +52,12 @@ const Timer = (props: Props) => {
   }, [isActive, seconds])
 
   return (
-    <div className="timer flex flex-1 rounded p-4 justify-between items-center text-white bg-black bg-opacity-60">
+    <div
+      className={`
+        flex rounded p-4 justify-between items-center text-white bg-black bg-opacity-60
+        ${props.isOpen ? 'w-80' : 'w-[162px]'}
+        `}
+    >
       <span className="font-bold text-5xl">
         {convertSecondsToMMSS(seconds)}
       </span>
