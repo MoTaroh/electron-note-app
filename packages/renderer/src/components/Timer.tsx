@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import TimerInput from './TimerInput'
+
+let initialCount = 15 * 60
 
 type Props = {
   isOpen: boolean
@@ -15,9 +18,9 @@ const convertSecondsToMMSS = (seconds: number) => {
 }
 
 const Timer = (props: Props) => {
-  let initialCount = 10 * 60
   const [seconds, setSeconds] = useState(initialCount)
   const [isActive, setIsActive] = useState(false)
+  const [isInput, setIsInput] = useState(false)
 
   const toggleCountdown = () => {
     setIsActive(!isActive)
@@ -28,9 +31,13 @@ const Timer = (props: Props) => {
     setIsActive(false)
   }
 
+  const handleInput = () => {
+    setIsActive(false)
+    setIsInput(!isInput)
+  }
   const setInitialCount = (count: number) => {
     initialCount = count
-    console.log(initialCount)
+    setSeconds(count)
   }
 
   useEffect(() => {
@@ -54,13 +61,13 @@ const Timer = (props: Props) => {
   return (
     <div
       className={`
-        flex rounded p-4 justify-between items-center text-white bg-black bg-opacity-60
-        ${props.isOpen ? 'w-80' : 'w-[162px]'}
+        relative flex rounded p-4 justify-between items-center text-white bg-black bg-opacity-60
+        ${props.isOpen ? 'w-80' : 'w-[]'}
         `}
     >
-      <span className="font-bold text-5xl">
+      <button onClick={() => handleInput()} className="font-bold text-5xl">
         {convertSecondsToMMSS(seconds)}
-      </span>
+      </button>
       {props.isOpen && (
         <div className="flex space-x-3">
           <button
@@ -77,6 +84,7 @@ const Timer = (props: Props) => {
           </button>
         </div>
       )}
+      {isInput && <TimerInput setInitialCount={setInitialCount} />}
     </div>
   )
 }
