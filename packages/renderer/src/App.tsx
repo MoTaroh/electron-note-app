@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import Editor from 'rich-markdown-editor'
 import Timer from './components/Timer'
 
-const App: React.FC = () => {
+import { useSpring, animated } from 'react-spring'
+
+const App: React.VFC = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [isHover, setIsHover] = useState(false)
   const theme = {
@@ -10,16 +12,26 @@ const App: React.FC = () => {
     text: '#ffffff',
     toolbarBackground: '#ffffff'
   }
+  const animationProps = useSpring({
+    opacity: !isOpen && isHover ? 1 : 0,
+    display: !isOpen && isHover ? 'block' : 'hidden',
+    x: !isOpen && isHover ? 0 : 32
+  })
+  // const openProps = useSpring({
+  //   padding: isOpen ?
+  // })
 
   return (
     <div
       className={`
-      bg-black bg-opacity-20 flex flex-col h-screen space-y-8
+      bg-black bg-opacity-20 flex flex-col h-screen space-y-8 backdrop-filter backdrop-blur-lg
       ${isOpen ? 'p-3 min-w-[320px]' : 'p-1'}`}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
     >
-      <div className="flex h-24 space-x-3">
+      <div
+        className="flex h-24 space-x-3"
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
         {isOpen && (
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -29,12 +41,13 @@ const App: React.FC = () => {
           </button>
         )}
         {!isOpen && isHover && (
-          <button
+          <animated.button
+            style={animationProps}
             onClick={() => setIsOpen(!isOpen)}
             className="w-8 flex items-center justify-center rounded text-white bg-black bg-opacity-60"
           >
             ←
-          </button>
+          </animated.button>
         )}
         <Timer isOpen={isOpen}></Timer>
       </div>
