@@ -1,5 +1,5 @@
 {
-  "name": "vite-electron-builder",
+  "name": "electron-note-app",
   "private": true,
   "engines": {
     "node": ">=v16.13",
@@ -13,33 +13,41 @@
     "pretest": "npm run build",
     "test": "node tests/app.spec.js",
     "watch": "node scripts/watch.js",
-    "lint": "eslint . --ext js,ts,vue",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
     "typecheck-main": "tsc --noEmit -p packages/main/tsconfig.json",
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
-    "typecheck-renderer": "vue-tsc --noEmit -p packages/renderer/tsconfig.json",
+    "typecheck-renderer": "tsc --noEmit -p packages/renderer/tsconfig.json",
     "typecheck": "npm run typecheck-main && npm run typecheck-preload && npm run typecheck-renderer",
     "pretypecheck-renderer": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts"
   },
   "devDependencies": {
     "@types/electron-devtools-installer": "2.2.1",
-    "@typescript-eslint/eslint-plugin": "5.8.1",
-    "@vitejs/plugin-vue": "2.0.1",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "autoprefixer": "^10.4.0",
     "cross-env": "7.0.3",
     "dts-for-context-bridge": "0.7.1",
     "electron": "16.0.5",
     "electron-builder": "22.14.5",
     "electron-devtools-installer": "3.2.0",
-    "eslint": "8.5.0",
-    "eslint-plugin-vue": "8.2.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
     "nano-staged": "0.5.0",
     "playwright": "1.17.1",
+    "postcss": "^8.4.5",
     "simple-git-hooks": "2.7.0",
+    "tailwindcss": "^3.0.7",
     "typescript": "4.5.4",
-    "vite": "2.7.8",
-    "vue-tsc": "0.30.1"
+    "vite": "2.7.8"
   },
   "dependencies": {
     "electron-updater": "4.6.5",
-    "vue": "3.2.26"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-spring": "^9.3.3",
+    "rich-markdown-editor": "^11.21.3",
+    "styled-components": "^5.3.3"
   }
 }

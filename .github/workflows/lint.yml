@@ -5,18 +5,19 @@ on:
       - main
     paths:
       - '**.js'
+      - '**.jsx'
       - '**.ts'
-      - '**.vue'
-      - 'package-lock.json'
+      - '**.tsx'
+      - 'yarn.json'
       - '.github/workflows/lint.yml'
   pull_request:
     paths:
       - '**.js'
+      - '**.jsx'
       - '**.ts'
-      - '**.vue'
-      - 'package-lock.json'
+      - '**.tsx'
+      - 'yarn.json'
       - '.github/workflows/lint.yml'
-
 
 defaults:
   run:
@@ -31,10 +32,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16 # Need for npm >=7.7
-          cache: 'npm'
-
+          cache: 'yarn'
       # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
-        run: npm ci
+        run: yarn
 
-      - run: npm run lint
+      - run: yarn lint
