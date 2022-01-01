@@ -32,8 +32,10 @@ const Timer = (props: Props) => {
   }
 
   const handleInput = () => {
-    setIsActive(false)
-    setIsInput(!isInput)
+    if (props.isOpen) {
+      setIsActive(false)
+      setIsInput(!isInput)
+    }
   }
   const setInitialCount = (count: number) => {
     initialCount = count
@@ -52,7 +54,7 @@ const Timer = (props: Props) => {
       console.log('pause')
     }
     if (isActive && seconds <= 0) {
-      alert('time is up!')
+      alert('Time is up!')
       resetCountdown()
     }
     return () => clearInterval(intervalId)
