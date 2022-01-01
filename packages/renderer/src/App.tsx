@@ -20,15 +20,21 @@ const App: React.VFC = () => {
     display: !isOpen && isHover ? 'block' : 'hidden',
     x: !isOpen && isHover ? 0 : 32
   })
-  // const openProps = useSpring({
-  //   padding: isOpen ?
-  // })
+  const { height, opacity, padding } = useSpring({
+    from: { height: 0, opacity: 0, padding: 4 },
+    to: {
+      height: isOpen ? 600 : 0,
+      opacity: isOpen ? 1 : 0,
+      padding: isOpen ? 12 : 4
+    }
+  })
 
   return (
-    <div
+    <animated.div
       className={`
       bg-black bg-opacity-20 flex flex-col h-screen space-y-8 backdrop-filter backdrop-blur-lg
       ${isOpen ? 'p-3 min-w-[320px]' : 'p-1'}`}
+      style={{ padding }}
     >
       <div
         className="flex h-24 space-x-3"
@@ -55,14 +61,17 @@ const App: React.VFC = () => {
         <Timer isOpen={isOpen}></Timer>
       </div>
       {isOpen && (
-        <div className="flex flex-1 flex-col space-y-4 w-[362px]">
+        <animated.div
+          className="flex flex-col space-y-4 w-[362px]"
+          style={{ opacity, height }}
+        >
           <h3 className="text-lg font-semibold text-white ">NOTES</h3>
           <div className="flex-1 px-8 py-4 bg-black rounded bg-opacity-60">
             <Editor defaultValue="Hello, world!" theme={theme} />
           </div>
-        </div>
+        </animated.div>
       )}
-    </div>
+    </animated.div>
   )
 }
 
