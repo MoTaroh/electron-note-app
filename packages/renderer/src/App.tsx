@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Editor from 'rich-markdown-editor'
+import base from 'rich-markdown-editor/dist/styles/theme'
 import Timer from './components/Timer'
 
 import { useSpring, animated } from 'react-spring'
@@ -8,9 +9,11 @@ const App: React.VFC = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [isHover, setIsHover] = useState(false)
   const theme = {
+    ...base,
     background: '#00000000',
     text: '#ffffff',
-    toolbarBackground: '#ffffff'
+    toolbarBackground: '#ffffff',
+    toolbarItem: '#000000'
   }
   const animationProps = useSpring({
     opacity: !isOpen && isHover ? 1 : 0,
@@ -35,7 +38,7 @@ const App: React.VFC = () => {
         {isOpen && (
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-8 flex items-center justify-center rounded text-white bg-black bg-opacity-60"
+            className="flex items-center justify-center w-8 text-white bg-black rounded bg-opacity-60"
           >
             →
           </button>
@@ -44,7 +47,7 @@ const App: React.VFC = () => {
           <animated.button
             style={animationProps}
             onClick={() => setIsOpen(!isOpen)}
-            className="w-8 flex items-center justify-center rounded text-white bg-black bg-opacity-60"
+            className="flex items-center justify-center w-8 text-white bg-black rounded bg-opacity-60"
           >
             ←
           </animated.button>
@@ -53,8 +56,8 @@ const App: React.VFC = () => {
       </div>
       {isOpen && (
         <div className="flex flex-1 flex-col space-y-4 w-[362px]">
-          <h3 className=" font-semibold text-lg text-white">NOTES</h3>
-          <div className="flex-1 py-4 px-8 rounded bg-black bg-opacity-60">
+          <h3 className="text-lg font-semibold text-white ">NOTES</h3>
+          <div className="flex-1 px-8 py-4 bg-black rounded bg-opacity-60">
             <Editor defaultValue="Hello, world!" theme={theme} />
           </div>
         </div>
