@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply w-8 h-8 bg-white rounded-full;
+    -webkit-app-region: no-drag;
+  }
+}

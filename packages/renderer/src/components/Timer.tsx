@@ -90,14 +90,14 @@ const Timer = (props: Props) => {
           <div className="flex space-x-3">
             <animated.button
               onClick={toggleCountdown}
-              className="w-8 h-8 text-blue-400 bg-white rounded-full"
+              className="text-blue-400 btn"
               style={style}
             >
               ▶
             </animated.button>
             <animated.button
-              onClick={toggleCountdown}
-              className="w-8 h-8 text-red-400 bg-white rounded-full"
+              onClick={resetCountdown}
+              className="text-red-400 btn"
               style={style}
             >
               ■
