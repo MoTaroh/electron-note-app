@@ -1,10 +1,10 @@
 module.exports = {
   content: [
-    "./packages/renderer/index.html",
-    "./packages/renderer/src/**/*.{js,jsx,ts,tsx}"
+    './packages/renderer/index.html',
+    './packages/renderer/src/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')]
 }

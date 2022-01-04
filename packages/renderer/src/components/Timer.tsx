@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TimerInput from './TimerInput'
+import { useSpring, useTransition, animated } from 'react-spring'
 
 let initialCount = 15 * 60
 
@@ -17,6 +18,11 @@ const convertSecondsToMMSS = (seconds: number) => {
   return `${mm}:${ss}`
 }
 
+/**
+ * Timer Component
+ * @param props isOpen
+ * @returns html
+ */
 const Timer = (props: Props) => {
   const [seconds, setSeconds] = useState(initialCount)
   const [isActive, setIsActive] = useState(false)
@@ -37,10 +43,21 @@ const Timer = (props: Props) => {
       setIsInput(!isInput)
     }
   }
+
   const setInitialCount = (count: number) => {
     initialCount = count
     setSeconds(count)
   }
+
+  const { width } = useSpring({
+    from: { width: 0 },
+    to: { width: props.isOpen ? 320 : 160 }
+  })
+  const buttonAnimation = useTransition(props.isOpen, {
+    from: { opacity: 0, height: 0, width: 0 },
+    enter: { opacity: 1, height: 32, width: 32 },
+    leave: { opacity: 0, height: 0, width: 0 }
+  })
 
   useEffect(() => {
     let intervalId: number
@@ -61,33 +78,37 @@ const Timer = (props: Props) => {
   }, [isActive, seconds])
 
   return (
-    <div
-      className={`
-        relative flex rounded p-4 justify-between items-center text-white bg-black bg-opacity-60
-        ${props.isOpen ? 'w-80' : 'w-[]'}
-        `}
+    <animated.div
+      className="relative flex items-center justify-between h-24 p-4 text-white bg-black rounded bg-opacity-60"
+      style={{ width }}
     >
-      <button onClick={() => handleInput()} className="font-bold text-5xl">
+      <button onClick={() => handleInput()} className="text-5xl font-bold">
         {convertSecondsToMMSS(seconds)}
       </button>
-      {props.isOpen && (
-        <div className="flex space-x-3">
-          <button
-            onClick={toggleCountdown}
-            className="h-8 w-8 bg-white text-blue-400 rounded-full"
-          >
-            ▶
-          </button>
-          <button
-            onClick={resetCountdown}
-            className="h-8 w-8 bg-white text-red-400 rounded-full"
-          >
-            ■
-          </button>
-        </div>
+      {buttonAnimation((style, item) =>
+        item ? (
+          <div className="flex space-x-3">
+            <animated.button
+              onClick={toggleCountdown}
+              className="text-blue-400 btn"
+              style={style}
+            >
+              ▶
+            </animated.button>
+            <animated.button
+              onClick={resetCountdown}
+              className="text-red-400 btn"
+              style={style}
+            >
+              ■
+            </animated.button>
+          </div>
+        ) : (
+          ''
+        )
       )}
       {isInput && <TimerInput setInitialCount={setInitialCount} />}
-    </div>
+    </animated.div>
   )
 }
 

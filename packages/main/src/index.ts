@@ -18,7 +18,7 @@ async function createOrRestoreWindow() {
     show: false, // Use 'ready-to-show' event to show window
     useContentSize: true,
     alwaysOnTop: true,
-    // frame: false,
+    frame: false,
     vibrancy: 'under-window',
     visualEffectState: 'active',
     webPreferences: {
