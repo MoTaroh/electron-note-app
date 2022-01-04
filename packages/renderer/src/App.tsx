@@ -8,6 +8,7 @@ import { useSpring, useTransition, animated } from 'react-spring'
 const App: React.VFC = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [isHover, setIsHover] = useState(false)
+  const [note, setNote] = useState('')
   const theme = {
     ...base,
     background: '#00000000',
@@ -70,12 +71,16 @@ const App: React.VFC = () => {
       {openHeightAnimation((style, item) =>
         item ? (
           <animated.div
-            className="flex flex-col space-y-4 w-[362px]"
+            className="flex flex-col space-y-4 w-[362px] [-webkit-app-region:no-drag]"
             style={style}
           >
             <h3 className="text-lg font-semibold text-white ">NOTES</h3>
             <div className="flex-1 px-8 py-4 bg-black rounded bg-opacity-60">
-              <Editor defaultValue="Hello, world!" theme={theme} />
+              <Editor
+                defaultValue={note}
+                theme={theme}
+                onChange={value => setNote(value)}
+              />
             </div>
           </animated.div>
         ) : (
