@@ -75,7 +75,7 @@ const App: React.VFC = () => {
             style={style}
           >
             <h3 className="text-lg font-semibold text-white ">NOTES</h3>
-            <div className="flex-1 px-8 py-4 bg-black rounded bg-opacity-60">
+            <div className="flex-1 px-8 py-4 prose bg-black rounded dark:prose-invert bg-opacity-60">
               <Editor
                 defaultValue={note}
                 theme={theme}

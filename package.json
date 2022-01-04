@@ -21,6 +21,7 @@
     "pretypecheck-renderer": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.0",
     "@types/electron-devtools-installer": "2.2.1",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
